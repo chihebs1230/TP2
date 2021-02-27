@@ -6,7 +6,14 @@ export const environment = {
   production: false,
   /* Ajouter votre configuration firebase */
   firebaseConfig: {
-   
+    apiKey: "AIzaSyDNWcAtwvR5k_SwFIgwO9aAuWIjWbrkzcc",
+    authDomain: "mon-projet-uvt-ch-sl.firebaseapp.com",
+    projectId: "mon-projet-uvt-ch-sl",
+    storageBucket: "mon-projet-uvt-ch-sl.appspot.com",
+    messagingSenderId: "1052236066646",
+    appId: "1:1052236066646:web:72a494b5efaadc73a970f7",
+    measurementId: "G-LELDK4558H"
+
   }
 };
 
