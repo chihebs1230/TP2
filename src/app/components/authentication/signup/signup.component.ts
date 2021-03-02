@@ -23,5 +23,8 @@ onsubmit()
 {}
     })
   }
-
+get formControls ()
+{
+  return this.signUpForm.controls;
+}
 }
