@@ -1,42 +1,29 @@
 import { Injectable } from '@angular/core';
-import { User } from 'src/app/models/user.model';
-import { AngularFireAuthModule } from "@angular/fire/auth";
-import { AngularFireAuth } from "@angular/fire/auth";
-
-import {AngularFirestore,AngularFirestoreDocument} from '@angular/fire/firestore';
-import firebase from 'firebase';
-
-
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore,AngularFirestoreDocument } from '@angular/fire/firestore';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthServiceService {
 
-  constructor(
-private afAuth : AngularFireAuth,
-private afs : AngularFirestore
-
-
-  ) { }
-createNewUser (signUpForm)
-{
-  return this.afAuth.createUserWithEmailAndPassword (signUpForm.email,signUpForm.password).then ((result) => {
-    this.SetUserData (result.user,signUpForm.username);
-  }).catch((error) => {
-    window.alert(error.message);
-  });
-}
-  SetUserData(user, userName) {
-   const userRef : AngularFirestoreDocument<any> = this.afs.doc('users/${user.uid}');
-const userData : User{
-  id : user.uid,
-  email : user.email,
-  userName :userName,
-
-};
-return userRef.set(userData, {merge : true
-  });
-
-}
+  constructor(private afAuth:AngularFireAuth,private afs:AngularFirestore) { }
+  createNewUser(signupForm:any){
+return this.afAuth.createUserWithEmailAndPassword(signupForm.email,signupForm.password).then((result)=>{
+  this.SetUserData(result.user,signupForm.userName)
+}).catch((error)=>{
+  console.log('error')
+  window.alert(error.message)
+})
+  }
+  SetUserData(user:any,username:any){
+  const userRef:AngularFirestoreDocument<any>=this.afs.doc('user/${user.uid}')
+  const userData:User={
+   id:user.uid,
+   email:user.email,
+   userName:username,
+  };
+  return userRef.set(userData,{merge:true})
+  }
 }
