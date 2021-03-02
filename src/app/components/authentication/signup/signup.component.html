@@ -1,1 +1,38 @@
-<p>signup works!</p>
+<div class ="row container" style="margin-top: 4em;">
+<div class="col-md-4 mx-auto">
+<h2> Créer un Compte</h2>
+<form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+
+
+
+<div class="form-group">
+
+<label for="userName"> Nom</label>
+    
+</div>
+<input type="text" id ="userName" class="form-control" formControlName="userName">
+
+<div class="form-group">
+
+    <label for="email"> Email</label>
+    <input type="text" id ="email" class="form-control" formControlName="email">
+    
+</div>
+
+<div class="form-group">
+    <label for="password"> password</label>
+
+    <input type="text" id ="password" class="form-control" formControlName="password">
+
+</div>
+
+
+<button type="submit"  [disabled]="signUpForm.invalid" class="btn btn-primary">
+
+Créer un Compte
+</button>
+
+</form>
+</div>
+
+</div>
