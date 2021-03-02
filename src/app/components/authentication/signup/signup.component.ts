@@ -20,7 +20,16 @@ email : ['',[Validators.required,Validators.email]],
 password : ['',[Validators.required,Validators.pattern('[0-9a-zA-Z]{6,}')  ]],
 
 onsubmit()
-{}
+{
+  this.authService.createNewUser(this.signUpForm.value).then(() => {
+    console.log('success registration');
+    this.router.navigate ('/signin');
+  })
+  .catch (err => {
+    console.log ('error registration',err);
+  });
+
+}
     })
   }
 get formControls ()
