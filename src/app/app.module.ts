@@ -12,6 +12,7 @@ import { SignupComponent } from './components/authentication/signup/signup.compo
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFireAuth } from "@angular/fire/auth";
+import { UserProfileModule } from './user-profile.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AngularFireAuth } from "@angular/fire/auth";
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     ReactiveFormsModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    UserProfileModule
   ],
   providers: [],
   bootstrap: [AppComponent]

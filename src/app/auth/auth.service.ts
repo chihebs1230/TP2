@@ -7,6 +7,7 @@ import { User } from '../models/user.model';
   providedIn: 'root'
 })
 export class AuthServiceService {
+  router: any;
 
   constructor(private afAuth:AngularFireAuth,private afs:AngularFirestore) { }
   createNewUser(signupForm:any){
@@ -26,4 +27,40 @@ return this.afAuth.createUserWithEmailAndPassword(signupForm.email,signupForm.pa
   };
   return userRef.set(userData,{merge:true})
   }
+
+  signIn (signInForm)
+  {
+    return this.afAuth.signInWithEmailAndPassword(signInForm.email, signInForm.password)
+    .then((result) => {
+      this.router.navigate(['/user-profile']);
+    }).catch((error) => {
+      window.alert(error.message);
+    });
+  }
+
+get isLoggedIn() : boolean {
+
+  const user = JSON.parse(localStorage.getItem('user'));
+  return (user !== null) ? true:false;
+}
+
+SignOut()
+{
+  return this.afAuth.signOut().then(() => {
+    localStorage.removeItem('user');
+    this.router.navigate(['signin']);
+  }
+}
+  signInWithPopup()
+  {
+    return this.afAuth.signInWithPopup(new firebase.auth.GoogleAuth()).then(
+      (result) => {
+        this.SetUserData(result.user);
+        this.router.navigate(['/user-profile']);
+      }
+    ).catch((error) => {
+      window.alert(error.message);
+    }
+
+}
 }
